@@ -297,14 +297,14 @@ from rest_framework.throttling import AnonRateThrottle, UserRateThrottle, Scoped
 class ProductModelViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['price', 'currency']
     search_fields = ['name']
     pagination_class = ProductPagination
     # throttle_classes = [AnonRateThrottle, UserRateThrottle]
-    throttle_classes = [ScopedRateThrottle]
-    throttle_scope = 'ragaca'
+    # throttle_classes = [ScopedRateThrottle]
+    # throttle_scope = 'ragaca'
 
 
 
