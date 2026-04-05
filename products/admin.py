@@ -4,7 +4,9 @@ from .models import Product, ProductImage, ProductTag, FavoriteProduct, Cart, Re
 
 admin.site.register(Product)
 admin.site.register(ProductImage)
-admin.site.register(ProductTag)
+@admin.register(ProductTag)
+class ProductTagAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
 admin.site.register(FavoriteProduct)
 admin.site.register(Cart)
 admin.site.register(Review)
