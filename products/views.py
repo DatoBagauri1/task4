@@ -360,20 +360,6 @@ class ProductImageViewSet(ModelViewSet):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail, get_connection
@@ -383,12 +369,12 @@ from django.core.mail import send_mail, get_connection
 def send_email_view(request):
     if request.method == "GET":
 
-        sender_email = "k@gmail.com"
-        app_password = ""
+        sender_email = "khomaainfo@gmail.com"
+        app_password = "nqiv lpxw nhxg wnkq"
 
         subject = "Hardcoded Test Email"
         message = "This email was sent from Django using hardcoded values."
-        recipient = "g@gmail.com"
+        recipient = "giokhomaa@gmail.com"
 
         try:
             connection = get_connection(
