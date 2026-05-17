@@ -309,7 +309,7 @@ class ReviewModelViewSet(ModelViewSet):
 
 
 
-
+from django.core.cache import cache
 
 class ProductModelViewSet(ModelViewSet):
     queryset = Product.objects.all()
@@ -318,10 +318,38 @@ class ProductModelViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['price', 'currency']
     search_fields = ['name']
-    pagination_class = ProductPagination
+    # pagination_class = ProductPagination
     # throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # throttle_classes = [ScopedRateThrottle]
     # throttle_scope = 'ragaca'
+
+    def get_serialized_products(self):
+        cache_key = 'products_cache'
+        cached_data = cache.get(cache_key)
+
+        if cached_data:
+            return cached_data
+
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+
+        cache.set(cache_key, serializer.data, timeout=60 * 5)
+
+        return serializer.data
+
+
+    def list(self, request, *args, **kwargs):
+        import time
+
+        start = time.time()
+
+        data = self.get_serialized_products()
+
+        end = time.time()
+
+        print(end - start)
+
+        return Response(data)
 
 
 

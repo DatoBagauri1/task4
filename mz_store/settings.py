@@ -207,3 +207,16 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 # CELERY_ACCEPT_CONTENT = ["json"]
 # CELERY_TASK_SERIALIZER = "json"
+
+
+
+
+
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://default:DuodUDlVrqgokuqbcLEvTJqdjJcCxRUs@autorack.proxy.rlwy.net:58507",
+    }
+}

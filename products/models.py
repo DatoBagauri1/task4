@@ -21,7 +21,7 @@ class Product(BaseModel):
         ('EUR', 'EUR'),
     ]
         
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.FloatField()
 
